@@ -21,6 +21,7 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from edx_rest_framework_extensions.auth.jwt.authentication import JwtAuthentication
+from edx_proctoring.authentication import OAuth2AuthenticationEnforceActiveUser
 
 from eventtracking import tracker
 
@@ -36,7 +37,7 @@ class AuthenticatedAPIView(APIView):
     """
     Authenticate APi View.
     """
-    authentication_classes = (SessionAuthentication, JwtAuthentication)
+    authentication_classes = (OAuth2AuthenticationEnforceActiveUser, SessionAuthentication, JwtAuthentication)
     permission_classes = (IsAuthenticated,)
 
 
